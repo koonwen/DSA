@@ -1,5 +1,7 @@
 # Bubble Sort
+from globalutils import timer
 
+@timer
 def bubble_sort(array:list) -> list:
     """Sorting Algorithm with O(n^2) runtime"""
     for current in range(len(array)-1):

@@ -1,3 +1,4 @@
+import copy
 import unittest
 from utils import list_generator
 from selectionsort import selection_sort
@@ -8,42 +9,53 @@ from quicksort import quick_sort
 from countingsort import counting_sort
 from radixsort import radix_sort
 
-class MyTestCase(unittest.TestCase):
+
+class SortingTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.test_array = list_generator(100)
+        """Create random list of integers"""
+        self.test_array = list_generator(10000)
 
     def sorted(self, array) -> bool:
+        """Check if list is sorted in ascending order"""
         for i in range(len(array)-1):
             self.assertTrue(array[i] <= array[i+1])
         return True
 
     def testSelectionSort(self):
-        result = selection_sort(self.test_array)
+        test = copy.deepcopy(self.test_array)
+        result = selection_sort(test)
         self.sorted(result)
 
     def testInsertionSort(self):
-        result = insertion_sort(self.test_array)
+        test = copy.deepcopy(self.test_array)
+        result = insertion_sort(test)
         self.sorted(result)
 
     def testBubbleSort(self):
-        result = bubble_sort(self.test_array)
+        test = copy.deepcopy(self.test_array)
+        result = bubble_sort(test)
         self.sorted(result)
 
     def testQuickSort(self):
-        result = quick_sort(self.test_array)
+        test = copy.deepcopy(self.test_array)
+        result = quick_sort(test)
         self.sorted(result)
 
     def testMergeSort(self):
-        result = merge_sort(self.test_array)
+        test = copy.deepcopy(self.test_array)
+        result = merge_sort(test)
         self.sorted(result)
 
     def testCountSort(self):
-        result = counting_sort(self.test_array)
+        test = copy.deepcopy(self.test_array)
+        result = counting_sort(test)
         self.sorted(result)
 
     def testRadixSort(self):
-        result = radix_sort(self.test_array)
+        test = copy.deepcopy(self.test_array)
+        result = radix_sort(test)
         self.sorted(result)
+
 
 if __name__ == '__main__':
     unittest.main()
